@@ -32,7 +32,7 @@
 
 Для определения расширения файла вы можете использовать метод ```extname``` модуля "path". [Документация](https://nodejs.org/api/path.html#path_path_extname_path)
 
-Получить информацию о файле поможет [stat](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#fs_fs_stat_path_options_callback). 
+Получить информацию о файле поможет [stat]().https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#fs_fs_stat_path_options_callback 
 Полный перечень данных которые возвращает данная функция вы можете увидеть в документации. Обратите внимание, что возвращаемый данной функцией объект является инстансом класса [Stats](https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#fs_class_fs_stats), который так же имеет методы позволяющие проверить является ли объект файлом.
 
 ##### Полезные ссылки
