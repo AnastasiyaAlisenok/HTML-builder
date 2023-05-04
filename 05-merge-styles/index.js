@@ -3,7 +3,7 @@ const path = require('path');
 const folderPath = path.resolve('./05-merge-styles/styles');
 let arr = [];
 
-async function readFolder() {
+async function mergeStyles() {
   try {
     const files = await fs.readdir(folderPath, { withFileTypes: true } );
     for (const file of files) {
@@ -19,4 +19,4 @@ async function readFolder() {
      console.error(err)
    }
 }
-readFolder()
+mergeStyles()
