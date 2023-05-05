@@ -1,14 +1,15 @@
 const fs = require('fs/promises');
 const path = require('path');
-const filesFolder = 'C:/Users/HP/HTML-builder/HTML-builder/04-copy-directory/files'
+const filesFolder = path.join(__dirname, 'files');
+const filesCopyFolder = path.join(__dirname, 'files-copy');
 
 async function copyDir() {
   try {
-    const createDir = await fs.mkdir('./04-copy-directory/files-copy', { recursive: true });
+    const createDir = await fs.mkdir(filesCopyFolder, { recursive: true });
     const files = await fs.readdir(filesFolder, { withFileTypes: true } );
 
     for (const file of files) {
-     fs.copyFile(`./04-copy-directory/files/${file.name}`, `./04-copy-directory/files-copy/${file.name}`);
+     fs.copyFile(`${filesFolder}/${file.name}`, `${filesCopyFolder}/${file.name}`);
     }
   } catch (err) {
     console.error(err.message);

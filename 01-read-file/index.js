@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const folderPath = path.normalize('C:/Users/HP/HTML-builder/HTML-builder/01-read-file/text.txt');
+const folderPath = path.join(__dirname, 'text.txt');
 
 fs.readFile(folderPath, 'utf-8',
 			(error, data) => {

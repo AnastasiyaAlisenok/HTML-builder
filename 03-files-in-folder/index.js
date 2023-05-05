@@ -2,7 +2,7 @@ const { Stats, Dirent } = require('fs');
 const { readdir } = require('fs/promises');
 const fs = require('fs/promises');
 const path = require('path');
-const folderPath = 'C:/Users/HP/HTML-builder/HTML-builder/03-files-in-folder/secret-folder';
+const folderPath = path.join(__dirname, 'secret-folder');
 let ext;
 let name;
 let size;
