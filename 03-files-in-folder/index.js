@@ -1,4 +1,3 @@
-const { Stats, Dirent } = require('fs');
 const { readdir } = require('fs/promises');
 const fs = require('fs/promises');
 const path = require('path');
@@ -20,8 +19,8 @@ async function readFolder() {
         console.log(`${name} - ${ext.slice(1, ext.length)} - ${size}kb`);
       }
     }
-   } catch (err) {
-     console.error(err)
-   }
+  } catch (err) {
+    console.error(err);
+  }
 }
-readFolder()
+readFolder();

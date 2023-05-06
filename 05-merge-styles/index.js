@@ -10,13 +10,13 @@ async function mergeStyles() {
       if (file.isFile() && path.extname(file.name) === '.css') {
         let content = fs.readFile(path.resolve(`${folderPath}/${file.name}`), { encoding: 'utf8' });
         arr.push((await content).toString());
+      }
     }
-   }
-   fs.writeFile(path.join(__dirname, 'bundle.css'), arr.join('\n'), (error) => {
-    if (error) throw error;
-  });
-} catch (err) {
-     console.error(err)
-   }
+    fs.writeFile(path.join(__dirname, 'bundle.css'), arr.join('\n'), (error) => {
+      if (error) throw error;
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
-mergeStyles()
+mergeStyles();

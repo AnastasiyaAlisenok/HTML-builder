@@ -1,4 +1,3 @@
-const { error } = require('console');
 const fs = require('node:fs/promises');
 const path = require('path');
 const distFolder = path.join(__dirname, 'project-dist');
@@ -26,11 +25,12 @@ async function copyDir() {
         fs.copyFile(`${assetsFolder}/${dir.name}/${folder.name}`, `${assetsCopyFolder}/${dir.name}/${folder.name}`);
       }
     }
-  } catch (err) {
-    console.error(err.message);
+  } catch (error) {
+    console.error(error.message);
   }
 }
-copyDir()
+copyDir();
+
 
 let arr = [];
 
@@ -41,16 +41,16 @@ async function mergeStyles() {
       if (file.isFile() && path.extname(file.name) === '.css') {
         let content = fs.readFile(path.resolve(`${stylesFolder}/${file.name}`), { encoding: 'utf8' });
         arr.push((await content).toString());
+      }
     }
-   }
-   fs.writeFile(path.join(distFolder, 'style.css'), arr.join('\n'), (error) => {
-    if (error) throw error;
-  });
-} catch (err) {
-     console.error(err)
-   }
+    fs.writeFile(path.join(distFolder, 'style.css'), arr.join('\n'), (error) => {
+      if (error) throw error;
+    });
+  } catch (err) {
+    console.error(err);
+  }
 }
-mergeStyles()
+mergeStyles();
 
 async function copyHtml() {
   try {
@@ -65,9 +65,9 @@ async function copyHtml() {
     readHtml = readHtml.replace('{{header}}', header).replace('{{articles}}', articles).replace('{{footer}}', footer);
     fs.writeFile(path.join(distFolder, 'index.html'), readHtml);
   } catch (error) {
-    console.error(error.message)
+    console.error(error.message);
   }
 }
 
-copyHtml()
+copyHtml();
 

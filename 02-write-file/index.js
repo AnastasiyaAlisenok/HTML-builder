@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('node:readline');
 const path =require('path');
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 const greeting = 'Здравствуйте! Введите текст: ';
 const buy = 'Спасибо! Успехов в учебе!';
 const pathFolder =path.join(__dirname, 'newtext.txt');
@@ -18,12 +18,12 @@ rl.on('line', (answer) => {
     console.log(buy);
     rl.close();
   } else {
-    writeableStream.write(`${answer}\n`)
+    writeableStream.write(`${answer}\n`);
   }
-})
+});
 
 rl.on('SIGINT', () => {
-    console.log(buy);
-    rl.close()
-})
+  console.log(buy);
+  rl.close();
+});
 
