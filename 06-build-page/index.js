@@ -5,10 +5,11 @@ const assetsCopyFolder = path.join(distFolder, 'assets');
 const assetsFolder = path.join(__dirname, 'assets');
 const stylesFolder = path.resolve(__dirname, 'styles');
 const componentsFolder = path.join(__dirname, 'components');
-let header;
 let readHtml;
-let articles;
-let footer;
+let component;
+
+
+
 
 async function copyDir() {
   try {
@@ -54,16 +55,18 @@ mergeStyles();
 
 async function copyHtml() {
   try {
-    const createFile = await fs.writeFile(path.join(distFolder, 'index.html'), ' ', (error) => {
+    await fs.writeFile(path.join(distFolder, 'index.html'), ' ', (error) => {
       if (error) throw error;
     });
-    const copyHtml = await fs.copyFile(path.join(__dirname, 'template.html'), path.join(distFolder, 'index.html'));
-    header =  await fs.readFile(path.join(componentsFolder, 'header.html'), { encoding: 'utf8' });
-    articles = await fs.readFile(path.join(componentsFolder, 'articles.html'), { encoding: 'utf8' });
-    footer = await fs.readFile(path.join(componentsFolder, 'footer.html'), { encoding: 'utf8' });
-    readHtml = await fs.readFile(path.join(distFolder, 'index.html'), { encoding: 'utf8' });
-    readHtml = readHtml.replace('{{header}}', header).replace('{{articles}}', articles).replace('{{footer}}', footer);
-    fs.writeFile(path.join(distFolder, 'index.html'), readHtml);
+    await fs.copyFile(path.join(__dirname, 'template.html'), path.join(distFolder, 'index.html'));
+    const files = await fs.readdir(componentsFolder);
+    for (const file of files) {
+      const name = path.basename(file, '.html');
+      component = await fs.readFile(path.join(componentsFolder, file), { encoding: 'utf8' });
+      readHtml = await fs.readFile(path.join(distFolder, 'index.html'), { encoding: 'utf8' });
+      readHtml = readHtml.replace(`{{${name}}}`, component);
+      fs.writeFile(path.join(distFolder, 'index.html'), readHtml);
+    }
   } catch (error) {
     console.error(error.message);
   }
