@@ -1,14 +1,9 @@
 const path = require('path');
 const fs = require('fs');
 const folderPath = path.join(__dirname, 'text.txt');
+const stream = fs.createReadStream(folderPath);
 
-fs.readFile(folderPath, 'utf-8', (error, data) => {if(error) {
-  if (error.code === 'ENOENT') {
-    console.error('myfile does not exist');
-    return;
-  }
-  throw error;
-}
-console.log(data);
+stream.on('data', (data) => {
+  console.log(data.toString());
 });
 
