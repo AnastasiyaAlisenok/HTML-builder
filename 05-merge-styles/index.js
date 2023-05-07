@@ -1,7 +1,10 @@
 const fs = require('fs/promises');
 const path = require('path');
 const folderPath = path.join(__dirname, 'styles');
+const distFolder = path.join(__dirname, 'project-dist');
 let arr = [];
+
+
 
 async function mergeStyles() {
   try {
@@ -12,7 +15,7 @@ async function mergeStyles() {
         arr.push((await content).toString());
       }
     }
-    fs.writeFile(path.join(__dirname, 'bundle.css'), arr.join('\n'), (error) => {
+    await fs.writeFile(path.join(distFolder, 'bundle.css'), arr.join('\n'), (error) => {
       if (error) throw error;
     });
   } catch (err) {
