@@ -14,11 +14,11 @@ async function copyDir(folder, newFolder) {
     for (const file of files) {
       const stats = await fs.stat(path.join(folder, `${file.name}`));
       if (stats.isDirectory()) {
-        copyDir(`${folder}/${file.name}`);
+         copyDir(path.join(folder, file.name));
 
       } else {
-        fs.writeFile(newFolder + '\\' + file.name, '');
-        fs.copyFile(`${folder}/${file.name}`, `${newFolder}/${file.name}`);
+        fs.writeFile(path.join(newFolder, file.name), '');
+        fs.copyFile(path.join(folder, file.name), path.join(newFolder,file.name));
       }
     }
   } catch (err) {
